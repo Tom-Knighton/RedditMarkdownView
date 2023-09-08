@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "snudownparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aciodev/SnudownParser",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e269e9e6fa774efcd55ff9323b132ccd4ea86e97"
+      }
+    }
+  ],
+  "version" : 2
+}

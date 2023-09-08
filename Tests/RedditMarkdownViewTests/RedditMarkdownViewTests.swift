@@ -1,12 +1,9 @@
 import XCTest
 @testable import RedditMarkdownView
+@testable import snudown
 
 final class RedditMarkdownViewTests: XCTestCase {
     func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+        RedditMarkdownView.tets()
     }
 }
