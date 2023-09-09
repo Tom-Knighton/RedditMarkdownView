@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "RedditMarkdownView",
     platforms: [
-        .iOS(.v17),
-        .macOS(.v14)
+        .iOS(.v16),
+        .macOS(.v13)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -16,7 +16,7 @@ let package = Package(
             targets: ["RedditMarkdownView"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/aciodev/SnudownParser", branch: "main")
+        .package(url: "https://github.com/scinfu/SwiftSoup", exact: "2.6.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,7 +24,7 @@ let package = Package(
         .target(name: "snudown"),
         .target(
             name: "RedditMarkdownView",
-            dependencies: ["snudown"]
+            dependencies: ["snudown", "SwiftSoup"]
         ),
         .testTarget(
             name: "RedditMarkdownViewTests",

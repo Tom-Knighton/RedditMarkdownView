@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "snudownparser",
+      "identity" : "swiftsoup",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aciodev/SnudownParser",
+      "location" : "https://github.com/scinfu/SwiftSoup",
       "state" : {
-        "branch" : "main",
-        "revision" : "e269e9e6fa774efcd55ff9323b132ccd4ea86e97"
+        "revision" : "8b6cf29eead8841a1fa7822481cb3af4ddaadba6",
+        "version" : "2.6.1"
       }
     }
   ],
