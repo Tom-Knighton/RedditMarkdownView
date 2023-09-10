@@ -10,8 +10,11 @@ import Foundation
 class SnuListNode: SnuNode {
     var isOrdered: Bool
     
-    init(isOrdered: Bool, children: [SnuNode]) {
+    var headerNode: SnuNode? = nil
+    
+    init(isOrdered: Bool, children: [SnuNode], headerNode: SnuNode? = nil) {
         self.isOrdered = isOrdered
+        self.headerNode = headerNode
         super.init(children: children)
     }
 }
