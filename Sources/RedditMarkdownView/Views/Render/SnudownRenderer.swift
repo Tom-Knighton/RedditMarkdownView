@@ -49,6 +49,9 @@ struct SnudownRenderSwitch: View {
         if let node = node as? SnuListNode {
             SnudownListView(list: node, headingNode: node.headerNode)
         }
+        if let node = node as? SnuCodeBlock {
+            SnudownCodeView(code: node)
+        }
         if let node = node as? SnuTextNode {
             SnudownTextView(node: node)
         }
