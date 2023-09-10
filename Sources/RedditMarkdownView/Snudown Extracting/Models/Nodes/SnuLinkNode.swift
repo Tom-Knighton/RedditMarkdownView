@@ -7,11 +7,11 @@
 
 import Foundation
 
-class SnuLinkNode: SnuNode {   
+class SnuLinkNode: SnuTextNode {
     var linkHref: String
     
     init(linkHref: String, children: [SnuNode]) {
         self.linkHref = linkHref
-        super.init(children: children)
+        super.init(insideText: "", children: children)
     }
 }

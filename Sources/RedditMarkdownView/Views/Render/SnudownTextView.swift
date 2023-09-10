@@ -23,7 +23,12 @@ struct SnudownTextView: View {
     }
     
     private func buildTextView(for node: SnuTextNode) -> Text {
-        let childNodes = node.children.filter { $0 is SnuTextNode}.compactMap { $0 as? SnuTextNode }
+        if let link = node as? SnuLinkNode {
+            return link.contentAsCMark()
+        }
+        
+        let childNodes = node.children.filter { $0 is SnuTextNode }.compactMap { $0 as? SnuTextNode }
+        
         if childNodes.count > 0 {
             return buildChildrenTextViews(childNodes)
                 .snuTextDecoration(node.decoration, font: font)
@@ -62,5 +67,38 @@ extension Text {
         case .none:
             return toReturn
         }
+    }
+}
+
+extension SnuTextNode {
+    
+    func contentAsCMark() -> Text {
+        var result = buildAttributedString(node: self)
+        
+        if let link = self as? SnuLinkNode {
+            result = "[\(result)](\(link.linkHref))"
+        }
+        return Text(LocalizedStringKey(result))
+    }
+    
+    private func buildAttributedString(node: SnuTextNode) -> String {
+        var result = ""
+        
+        for child in node.children.compactMap({ $0 as? SnuTextNode }) {
+            var childAttributed = child.insideText
+            childAttributed.append(buildAttributedString(node: child))
+            switch child.decoration {
+            case .bold:
+                result.append("**\(childAttributed)**")
+            case .italic:
+                result.append("*\(childAttributed)*")
+            case .strikethrough:
+                result.append("~~\(childAttributed)~~")
+            default:
+                result.append("\(childAttributed)")
+            }
+        }
+        
+        return result
     }
 }

@@ -34,15 +34,15 @@ struct SnudownRenderSwitch: View {
     
     let node: SnuNode
     
-    var body: some View {
-        if let node = node as? SnuTextNode {
-            SnudownTextView(node: node)
-        }
+    var body: some View {   
         if let node = node as? SnuSpoilerNode {
             SnudownSpoilerView(node: node)
         }
         if let node = node as? SnuHeaderNode {
             SnudownHeaderView(node: node)
+        }
+        if let node = node as? SnuTextNode {
+            SnudownTextView(node: node)
         }
     }
 }
