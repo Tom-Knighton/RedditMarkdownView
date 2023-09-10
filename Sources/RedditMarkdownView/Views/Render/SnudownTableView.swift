@@ -42,10 +42,33 @@ struct SnudownTableView: View {
             Divider()
             GridRow {
                 let cells = row.children.compactMap { $0 as? SnuTableCell }
-                ForEach(cells, id: \.id) { cell in
+                ForEach(Array(cells.enumerated()), id: \.element.id) { i, cell in
                     SnudownRenderSwitch(node: cell.children.first ?? cell)
+                        .gridColumnAlignment(self.table.alignmentForCol(i))
                 }
             }
+        }
+    }
+}
+
+extension SnuTableNode {
+    
+    func alignmentForCol(_ col: Int) -> HorizontalAlignment {
+        guard  self.headers.count > col else {
+            return .leading
+        }
+        
+        let header = self.headers[col] as? SnuTableHeaderNode
+        
+        switch header?.alignment {
+        case .left:
+            return .leading
+        case .center:
+            return .center
+        case .right:
+            return .trailing
+        case .none:
+            return .leading
         }
     }
 }
