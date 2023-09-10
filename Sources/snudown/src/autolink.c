@@ -376,7 +376,7 @@ sd_autolink__subreddit(
 	size_t rewind;
 	int is_allminus = 0;
 
-	rewind = check_reddit_autolink_prefix(data, max_rewind, max_lookbehind, size, 'r');
+	rewind = check_reddit_autolink_prefix(data, max_rewind, max_lookbehind, size, 'r') || check_reddit_autolink_prefix(data, max_rewind, max_lookbehind, size, 'R');
 	if (!rewind)
 		return 0;
 
@@ -459,7 +459,7 @@ sd_autolink__username(
 	if (size < 3)
 		return 0;
 
-	rewind = check_reddit_autolink_prefix(data, max_rewind, max_lookbehind, size, 'u');
+	rewind = check_reddit_autolink_prefix(data, max_rewind, max_lookbehind, size, 'u') || check_reddit_autolink_prefix(data, max_rewind, max_lookbehind, size, 'U');
 	if (!rewind)
 		return 0;
 
