@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct SnuCodeBlock: SnuNode {
-    var children: [SnuNode]
-    
+class SnuCodeBlock: SnuNode {
     let insideText: String
+    
+    init(children: [SnuNode], insideText: String) {
+        self.insideText = insideText
+        super.init(children: children)
+    }
 }

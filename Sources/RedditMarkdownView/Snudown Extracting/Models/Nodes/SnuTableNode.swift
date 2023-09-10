@@ -13,23 +13,25 @@ enum TableAlignment {
     case right
 }
 
-struct SnuTableNode: SnuNode {
-    var children: [SnuNode]
-    
+class SnuTableNode: SnuNode {
     var headers: [SnuNode]
-}
-
-struct SnuTableHeaderNode: SnuNode {
-    var children: [SnuNode]
     
+    init(headers: [SnuNode], children: [SnuNode]) {
+        self.headers = headers
+        super.init(children: children)
+    }
+}
+
+class SnuTableHeaderNode: SnuNode {
     let alignment: TableAlignment
+    
+    init(alignment: TableAlignment, children: [SnuNode]) {
+        self.alignment = alignment
+        super.init(children: children)
+    }
 }
 
-struct SnuTableRowNode: SnuNode {
-    var children: [SnuNode]
-}
+class SnuTableRowNode: SnuNode {}
 
-struct SnuTableCell: SnuNode {
-    var children: [SnuNode]
-}
+class SnuTableCell: SnuNode {}
 

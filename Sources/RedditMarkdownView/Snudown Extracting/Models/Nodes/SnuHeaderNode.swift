@@ -16,9 +16,13 @@ enum SnuHeadingLevel {
     case h6
 }
 
-struct SnuHeaderNode: SnuNode {
-    var children: [SnuNode]
-    
+class SnuHeaderNode: SnuNode {
     var insideText: String
     var headingLevel: SnuHeadingLevel
+    
+    init(insideText: String, headingLevel: SnuHeadingLevel, children: [SnuNode]) {
+        self.insideText = insideText
+        self.headingLevel = headingLevel
+        super.init(children: children)
+    }
 }

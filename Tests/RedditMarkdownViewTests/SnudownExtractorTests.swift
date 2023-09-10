@@ -326,4 +326,13 @@ final class SnudownExtractorTests: XCTestCase {
         let row1 = rows.first!
         XCTAssert(row1.children.count == 3)
     }
+    
+    
+    func testXXX() {
+        let snudownText = "<p><span class=\"md-spoiler-text\">Spoiler</span> <del><strong>Hey!</strong></del>\n<strong>Current Metacritic</strong></p>\n"
+        
+        let paragraphs = SnudownExtractor.extract(snudown: snudownText)
+        
+        let x = 1
+    }
 }

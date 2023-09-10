@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct SnuSpoilerNode: SnuNode {
+class SnuSpoilerNode: SnuNode {
     var insideText: String
-    var children: [SnuNode]
+    
+    init(insideText: String, children: [SnuNode]) {
+        self.insideText = insideText
+        super.init(children: children)
+    }
 }

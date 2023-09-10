@@ -7,6 +7,9 @@
 
 import Foundation
 
-struct SnuQuoteBlockNode: SnuNode {
-    var children: [SnuNode]
+class SnuQuoteBlockNode: SnuNode {
+    
+    override init(children: [SnuNode]) {
+        super.init(children: children)
+    }
 }

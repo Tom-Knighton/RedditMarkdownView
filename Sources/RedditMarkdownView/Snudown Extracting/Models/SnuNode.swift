@@ -7,6 +7,11 @@
 
 import Foundation
 
-protocol SnuNode {
-    var children: [SnuNode] { get set }
+class SnuNode: Identifiable {
+    var children: [SnuNode]
+    let id: UUID = UUID()
+    
+    init(children: [SnuNode]) {
+        self.children = children
+    }
 }

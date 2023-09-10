@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct SnuLinkNode: SnuNode {
-    var children: [SnuNode]
-    
+class SnuLinkNode: SnuNode {   
     var linkHref: String
+    
+    init(linkHref: String, children: [SnuNode]) {
+        self.linkHref = linkHref
+        super.init(children: children)
+    }
 }

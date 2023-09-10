@@ -13,10 +13,14 @@ enum SnuTextNodeDecoration {
     case italic
 }
 
-struct SnuTextNode: SnuNode {
+class SnuTextNode: SnuNode {
 
-    var insideText: String
-    var children: [SnuNode]
-    
+    var insideText: String    
     var decoration: SnuTextNodeDecoration?
+    
+    init(insideText: String, decoration: SnuTextNodeDecoration? = nil, children: [SnuNode]) {
+        self.insideText = insideText
+        self.decoration = decoration
+        super.init(children: children)
+    }
 }

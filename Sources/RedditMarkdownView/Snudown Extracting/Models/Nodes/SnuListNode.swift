@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct SnuListNode: SnuNode {
-    var children: [SnuNode]
+class SnuListNode: SnuNode {
     var isOrdered: Bool
+    
+    init(isOrdered: Bool, children: [SnuNode]) {
+        self.isOrdered = isOrdered
+        super.init(children: children)
+    }
 }
