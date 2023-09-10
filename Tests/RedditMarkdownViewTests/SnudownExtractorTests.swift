@@ -242,7 +242,7 @@ final class SnudownExtractorTests: XCTestCase {
     }
     
     func test_deepQuote() throws {
-        let snudownText = "<blockquote><p>Im a quote</p><blockquote><p>are you?</p></blockquote></blockquote>"
+        let snudownText = "<blockquote><p>Im a quote</p><blockquote><p><em>are you?</em></p></blockquote></blockquote>"
         let paragraphs = SnudownExtractor.extract(snudown: snudownText)
         
         XCTAssert(paragraphs.count == 1)
@@ -262,7 +262,7 @@ final class SnudownExtractorTests: XCTestCase {
         XCTAssert(quote.children[1] is SnuQuoteBlockNode)
         let child2 = quote.children[1] as! SnuQuoteBlockNode
         XCTAssert(child2.children.count == 1)
-        let child2text = (child2.children.first as! SnuTextNode).insideText
+        let child2text = (child2.children.first?.children.first as! SnuTextNode).insideText
         XCTAssert(child2text == "are you?")
     }
     
@@ -329,7 +329,7 @@ final class SnudownExtractorTests: XCTestCase {
     
     
     func testXXX() {
-        let snudownText = "<p><span class=\"md-spoiler-text\">Spoiler</span></p>\n"
+        let snudownText = "<blockquote>\n<p><strong>quote bold</strong></p>\n</blockquote>\n"
         
         let paragraphs = SnudownExtractor.extract(snudown: snudownText)
         

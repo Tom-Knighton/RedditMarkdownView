@@ -94,7 +94,7 @@ struct SnudownExtractor {
     private static func makeSnuNode(from htmlElement: HtmlElement) -> SnuNode {
         switch htmlElement.type {
         case .p:
-            return SnuTextNode(insideText: htmlElement.inside, children: [])
+            return SnuTextNode(insideText: htmlElement.inside, children: snuNodeChildren(htmlElement.children))
         case .spoiler:
             return SnuSpoilerNode(insideText: htmlElement.inside, children: snuNodeChildren(htmlElement.children))
         case .bold:

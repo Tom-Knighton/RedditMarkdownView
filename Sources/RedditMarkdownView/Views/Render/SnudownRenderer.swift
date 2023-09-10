@@ -40,11 +40,15 @@ struct SnudownRenderSwitch: View {
         if let node = node as? SnuHeaderNode {
             SnudownHeaderView(node: node)
         }
-        if let node = node as? SnuTextNode {
-            SnudownTextView(node: node)
-        }
         if let node = node as? SnuTableNode {
             SnudownTableView(table: node)
         }
+        if let node = node as? SnuQuoteBlockNode {
+            SnudownQuoteView(quote: node)
+        }
+        if let node = node as? SnuTextNode {
+            SnudownTextView(node: node)
+        }
+        
     }
 }
