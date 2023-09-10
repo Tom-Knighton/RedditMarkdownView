@@ -14,7 +14,6 @@ struct SnudownRenderer: View {
     var body: some View {
         ForEach(paragraphs) { p in
             renderParagraph(p)
-            Divider()
         }
     }
     
@@ -43,6 +42,9 @@ struct SnudownRenderSwitch: View {
         }
         if let node = node as? SnuTextNode {
             SnudownTextView(node: node)
+        }
+        if let node = node as? SnuTableNode {
+            SnudownTableView(table: node)
         }
     }
 }
