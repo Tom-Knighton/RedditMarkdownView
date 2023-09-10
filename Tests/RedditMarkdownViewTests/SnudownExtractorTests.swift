@@ -329,7 +329,7 @@ final class SnudownExtractorTests: XCTestCase {
     
     
     func testXXX() {
-        let snudownText = "<p><span class=\"md-spoiler-text\">Spoiler</span> <del><strong>Hey!</strong></del>\n<strong>Current Metacritic</strong></p>\n"
+        let snudownText = "<p><span class=\"md-spoiler-text\">Spoiler</span></p>\n"
         
         let paragraphs = SnudownExtractor.extract(snudown: snudownText)
         
