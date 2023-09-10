@@ -24,7 +24,6 @@ struct SnudownListView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            .border(.red)
             .padding(.leading, headingNode == nil ? 0 : 16)
         }
     }
