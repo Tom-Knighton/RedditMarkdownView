@@ -11,10 +11,11 @@ struct SnudownTextView: View {
     
     let node: SnuTextNode
     
-    var result = Text("")
+    private var font: Font?
     
-    init(node: SnuTextNode) {
+    init(node: SnuTextNode, font: Font? = nil) {
         self.node = node
+        self.font = font
     }
     
     var body: some View {
@@ -25,37 +26,41 @@ struct SnudownTextView: View {
         let childNodes = node.children.filter { $0 is SnuTextNode}.compactMap { $0 as? SnuTextNode }
         if childNodes.count > 0 {
             return buildChildrenTextViews(childNodes)
-                .snuTextDecoration(node.decoration)
+                .snuTextDecoration(node.decoration, font: font)
         } else {
             var textToDisplay = node.insideText
             if textToDisplay.hasSuffix("\n") {
                 textToDisplay = String(textToDisplay.dropLast())
             }
             return Text(textToDisplay)
-                .snuTextDecoration(node.decoration)
+                .snuTextDecoration(node.decoration, font: font)
         }
     }
     
     private func buildChildrenTextViews(_ children: [SnuTextNode]) -> Text {
         return children.reduce(Text("")) { (result, childNode) in
             result + buildTextView(for: childNode)
-                .snuTextDecoration(childNode.decoration)
+                .snuTextDecoration(childNode.decoration, font: font)
         }
     }
 }
 
 extension Text {
     
-    func snuTextDecoration(_ decoration: SnuTextNodeDecoration?) -> Text {
+    func snuTextDecoration(_ decoration: SnuTextNodeDecoration?, font: Font?) -> Text {
+        var toReturn = self
+        if let font {
+            toReturn = toReturn.font(font)
+        }
         switch decoration {
         case .bold:
-            return self.bold()
+            return toReturn.bold()
         case .italic:
-            return self.italic()
+            return toReturn.italic()
         case .strikethrough:
-            return self.strikethrough()
+            return toReturn.strikethrough()
         case .none:
-            return self
+            return toReturn
         }
     }
 }
