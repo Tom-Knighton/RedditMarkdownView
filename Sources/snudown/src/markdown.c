@@ -912,6 +912,7 @@ char_autolink_subreddit_or_username(struct buf *ob, struct sd_markdown *rndr, ui
 	/* Found either a user or subreddit link */
 	if (link_len > 0) {
 		link_url = rndr_newbuf(rndr, BUFFER_SPAN);
+        bufputs(link_url, "https://reddit.com");
 		if (no_slash)
 			bufputc(link_url, '/');
 		bufput(link_url, link->data, link->size);
