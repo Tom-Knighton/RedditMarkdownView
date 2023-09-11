@@ -1,4 +1,3 @@
-
 # RedditMarkdownView
 A SwiftUI library to parse and render Reddit's Snudown markdown scheme, 
 with spoilers and table support (and all of reddit's quirks)
@@ -69,7 +68,7 @@ columns want to take up more space.
 Snudown tables are wrapped in a horizontal scrollview, so they can exceed 
 the width of the window.
 
-```
+```swift
 var body: some View {
   ScrollView {
     SnudownView(text: "|Column 1|Column 2|Column 3 which is 
