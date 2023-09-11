@@ -9,13 +9,17 @@ import SwiftUI
 
 struct SnudownQuoteView: View {
     
+    @Environment(\.snuTextAlignment) var textAlignment: Alignment
+    @Environment(\.snuMultilineTextAlignment) var snuMultilineAlignment: TextAlignment
+    
     let quote: SnuQuoteBlockNode
     
     var body: some View {
         VStack {
             ForEach(quote.children, id: \.id) { child in
                 SnudownRenderSwitch(node: child)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: textAlignment)
+                    .multilineTextAlignment(snuMultilineAlignment)
             }
         }
         .padding(.vertical, 8)

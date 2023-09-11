@@ -19,7 +19,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/scinfu/SwiftSoup", exact: "2.6.1"),
-        .package(url: "https://github.com/raspu/Highlightr", exact: "2.1.2")
+        .package(url: "https://github.com/raspu/Highlightr", exact: "2.1.2"),
+        .package(url: "https://github.com/kean/Nuke", exact: "12.1.6")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,7 +28,7 @@ let package = Package(
         .target(name: "snudown"),
         .target(
             name: "RedditMarkdownView",
-            dependencies: ["snudown", "SwiftSoup", "Highlightr"]
+            dependencies: ["snudown", "SwiftSoup", "Highlightr", "Nuke"]
         ),
         .testTarget(
             name: "RedditMarkdownViewTests",

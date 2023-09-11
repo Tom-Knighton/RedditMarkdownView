@@ -9,23 +9,28 @@ import SwiftUI
 
 struct SnudownRenderer: View {
     
+    @Environment(\.snuTextAlignment) private var textAlign
+    @Environment(\.snuMultilineTextAlignment) private var multiAlign
+    
     let paragraphs: [SnuParagprah]
     
     var body: some View {
-        ForEach(paragraphs) { p in
-            renderParagraph(p)
+        VStack(alignment: textAlign.horizontal) {
+            ForEach(paragraphs) { p in
+                renderParagraph(p)
+            }
         }
+        .multilineTextAlignment(multiAlign)
     }
     
     @ViewBuilder
     func renderParagraph(_ p: SnuParagprah) -> some View {
-        FlowLayout(verticleSpacing: 8) {
+        WrappingHStack(alignment: textAlign, horizontalSpacing: 0, verticalSpacing: 8) {
             ForEach(p.children) { child in
                 SnudownRenderSwitch(node: child)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-        
     }
 }
 

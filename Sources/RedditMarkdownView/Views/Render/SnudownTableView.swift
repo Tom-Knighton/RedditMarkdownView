@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SnudownTableView: View {
     
+    @Environment(\.snuTableColumnAvgWidth) private var tableAvgWidth: CGFloat
+    
     let table: SnuTableNode
     
     var body: some View {
@@ -31,7 +33,7 @@ struct SnudownTableView: View {
                     .stroke(.quaternary, lineWidth: 2)
             }
             .fixedSize(horizontal: false, vertical: true)
-            .frame(width: 250 * CGFloat(table.headers.count))
+            .frame(width: tableAvgWidth * CGFloat(table.headers.count))
         }
     }
     
@@ -45,6 +47,7 @@ struct SnudownTableView: View {
                 ForEach(Array(cells.enumerated()), id: \.element.id) { i, cell in
                     SnudownRenderSwitch(node: cell.children.first ?? cell)
                         .gridColumnAlignment(self.table.alignmentForCol(i))
+                        .multilineTextAlignment(self.table.alignmentForCol(i).textAlignment)
                 }
             }
         }
@@ -68,6 +71,23 @@ extension SnuTableNode {
         case .right:
             return .trailing
         case .none:
+            return .leading
+        }
+    }
+}
+
+
+extension HorizontalAlignment {
+    
+    var textAlignment: TextAlignment {
+        switch self {
+        case .leading:
+            return .leading
+        case .center:
+            return .center
+        case .trailing:
+            return .trailing
+        default:
             return .leading
         }
     }

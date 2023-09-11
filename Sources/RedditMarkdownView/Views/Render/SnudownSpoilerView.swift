@@ -9,9 +9,10 @@ import SwiftUI
 
 struct SnudownSpoilerView: View {
     
-    let node: SnuSpoilerNode
-    
+    @Environment(\.snuDefaultFont) var defaultFont: Font
     @State private var isOpen: Bool = false
+
+    let node: SnuSpoilerNode
     
     var body: some View {
         Group {
@@ -19,6 +20,7 @@ struct SnudownSpoilerView: View {
                 text()
             } else {
                 Text("SPOILER")
+                    .font(defaultFont)
             }
         }
         .padding(.all, 2)
@@ -30,6 +32,7 @@ struct SnudownSpoilerView: View {
             if !isOpen {
                 Text("SPOILER")
                     .foregroundStyle(.white)
+                    .font(defaultFont)
             }
         }
         .onTapGesture {
@@ -47,6 +50,7 @@ struct SnudownSpoilerView: View {
             SnudownTextView(node: parent)
         } else {
             Text(node.insideText)
+                .font(defaultFont)
         }
     }
 }

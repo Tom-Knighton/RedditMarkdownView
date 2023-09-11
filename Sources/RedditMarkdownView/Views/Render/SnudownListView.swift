@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SnudownListView: View {
     
+    @Environment(\.snuTextAlignment) private var align
+    
     let list: SnuListNode
     var headingNode: SnuNode? = nil
     
@@ -16,12 +18,12 @@ struct SnudownListView: View {
         VStack {
             if let headingNode = headingNode as? SnuTextNode {
                 SnudownTextView(node: headingNode)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: align)
             }
             VStack {
                 ForEach(Array(list.children.enumerated()), id: \.element.id) { i, listItem in
                     SnudownRenderSwitch(node: getItem(listItem, index: i))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: align)
                 }
             }
             .padding(.leading, headingNode == nil ? 0 : 16)

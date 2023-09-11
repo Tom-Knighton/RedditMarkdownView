@@ -9,6 +9,14 @@ import SwiftUI
 
 struct SnudownHeaderView: View {
     
+    @Environment(\.snuTextColour) private var textColour
+    @Environment(\.snuH1Font) private var h1Font
+    @Environment(\.snuH2Font) private var h2Font
+    @Environment(\.snuH3Font) private var h3Font
+    @Environment(\.snuH4Font) private var h4Font
+    @Environment(\.snuH5Font) private var h5Font
+    @Environment(\.snuH6Font) private var h6Font
+    
     let node: SnuHeaderNode
     
     var body: some View {
@@ -24,23 +32,24 @@ struct SnudownHeaderView: View {
         } else {
             Text(node.insideText)
                 .font(getFontForLevel())
+                .foregroundColor(textColour)
         }
     }
     
     private func getFontForLevel() -> Font {
         switch node.headingLevel {
         case .h1:
-            return Font.system(size: 34)
+            return h1Font
         case .h2:
-            return Font.system(size: 30)
+            return h2Font
         case .h3:
-            return Font.custom("SFUI-Regular", size: 28, relativeTo: .largeTitle)
+            return h3Font
         case .h4:
-            return Font.custom("SFUI-Regular", size: 26, relativeTo: .largeTitle)
+            return h4Font
         case .h5:
-            return Font.custom("SFUI-Regular", size: 24, relativeTo: .largeTitle)
+            return h5Font
         case .h6:
-            return Font.custom("SFUI-Regular", size: 20, relativeTo: .largeTitle)
+            return h6Font
         }
     }
 }
