@@ -2,6 +2,8 @@
 A SwiftUI library to parse and render Reddit's Snudown markdown scheme, 
 with spoilers and table support (and all of reddit's quirks)
 
+![img](https://cdn.tomk.online/cdn/RedditMarkdownView/presentation1.png)
+
 # Features
 - Parse any plain text into Reddit's Snudown and have it automatically 
 rendered for you ✨
@@ -84,6 +86,8 @@ qui officia deserunt mollit anim id est laborum.|")
 }
 ```
 
+![img](https://cdn.tomk.online/cdn/RedditMarkdownView/presentation2.png)
+
 ## Inline images
 By default Snudown uses Nuke to analyse links (including plain text links) 
 and display inline images if the link is a direct link to an image. 
@@ -97,6 +101,12 @@ to in either the `SnudownConfig` model or by using the separate view
 modifiers
 `.snudownDisplayInlineImages(_ display: Bool)` 
 `.snudownInlineImageWidth(_ width: CGFloat)`
+
+For example:
+```swift
+SnudownView(text: "[imageception](https://upload.wikimedia.org/wikipedia/commons/b/be/SGI-2016-South_Georgia_%28Fortuna_Bay%29%E2%80%93King_penguin_%28Aptenodytes_patagonicus%29_04.jpg)"
+```
+![img](https://cdn.tomk.online/cdn/RedditMarkdownView/presentation3.png)
 
 ## u/ and r/ links
 The library uses a slightly (2 lines!) modified version of Snudown, which 
