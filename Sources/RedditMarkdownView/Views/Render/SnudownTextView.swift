@@ -94,26 +94,32 @@ extension SnuTextNode {
     func contentAsCMark(loadImages: Bool, imageWidth: CGFloat) async -> Text {
        
         var result = buildAttributedString(node: self)
-        
+
         if let link = self as? SnuLinkNode {
-            if loadImages, let linkUrl = URL(string: link.linkHref) {
-                let imageTask = Task.detached(priority: .background) { [result] in
+            
+            result = "[\(result)](\(link.linkHref.trimmingCharacters(in: .whitespacesAndNewlines)))"
+            
+            if loadImages, let linkUrl = URL(string: link.linkHref.trimmingCharacters(in: .whitespacesAndNewlines)) {
+                let imageTask: Task<Text?, Never> = Task.detached(priority: .background) { [result] in
                     let request = ImageRequest(
                         url: linkUrl,
                         processors: [.resize(width: imageWidth)]
                     )
                     let imageTask = try? await ImagePipeline.shared.image(for: request)
                     if let cgImage = await imageTask?.byPreparingForDisplay() {
-                        return Text(Image(uiImage: cgImage).resizable()) + Text(LocalizedStringKey("\n[\(result)](\(link.linkHref))"))
+                        return Text(Image(uiImage: cgImage).resizable()) + Text("\n") + Text(LocalizedStringKey(result))
                     }
                     
-                    return Text(LocalizedStringKey("[\(result)](\(link.linkHref))"))
+                    return nil
                 }
-                return await imageTask.value
+                
+                if let value = await imageTask.value {
+                    return value
+                }
             }
 
-            result = "[\(result)](\(link.linkHref))"
         }
+        
         return Text(LocalizedStringKey(result))
     }
     
