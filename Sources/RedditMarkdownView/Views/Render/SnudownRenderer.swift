@@ -59,7 +59,6 @@ struct SnudownRenderSwitch: View {
         }
         if let node = node as? SnuTextNode {
             SnudownTextView(node: node)
-                .border(.red)
         }
         
     }
