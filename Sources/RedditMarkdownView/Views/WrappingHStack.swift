@@ -65,7 +65,7 @@ struct WrappingHStack: Layout {
 
         if rows.isEmpty { return cache.minSize }
 
-        let width = proposal.width ?? rows.map { $0.width }.reduce(.zero) { max($0, $1) }
+        let width = rows.map { $0.width }.reduce(.zero) { max($0, $1) }
 
         var height: CGFloat = .zero
         if let lastRow = rows.last {
