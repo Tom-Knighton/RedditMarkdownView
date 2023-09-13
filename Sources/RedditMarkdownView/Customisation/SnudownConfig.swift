@@ -51,4 +51,7 @@ public struct SnudownConfig {
     
     /// The width to resize inline images to, if enabled
     public var inlineImageWidth: CGFloat = 50
+    
+    /// Whether or not the actual link should be displayed under a linked image. If false, you will not be able to tap the image to open the url
+    public var inlineImageShowLinks: Bool = true
 }

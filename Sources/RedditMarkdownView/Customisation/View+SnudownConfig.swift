@@ -29,6 +29,7 @@ public extension View {
             .environment(\.snuLinkColour, config.linkColor)
             .environment(\.snuDisplayInlineImages, config.displayInlineImages)
             .environment(\.snuInlineImageWidth, config.inlineImageWidth)
+            .environment(\.snuInlineImageShowLink, config.inlineImageShowLinks)
     }
     
     
@@ -86,6 +87,11 @@ public extension View {
     /// How wide inline images should be resized
     func snudownInlineImageWidth(_ width: CGFloat) -> some View {
         environment(\.snuInlineImageWidth, width)
+    }
+    
+    /// Whether or not to display tappable links under linked images. If false, the image itself still will *not* be tappable to open urls
+    func snudownShowInlineImageLinks(_ show: Bool) -> some View {
+        environment(\.snuInlineImageShowLink, show)
     }
 }
 

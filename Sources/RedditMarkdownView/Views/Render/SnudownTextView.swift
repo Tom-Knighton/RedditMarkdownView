@@ -15,6 +15,7 @@ struct SnudownTextView: View {
     @Environment(\.snuLinkColour) private var linkColor
     @Environment(\.snuDisplayInlineImages) private var displayImages
     @Environment(\.snuInlineImageWidth) private var imageWidth
+    @Environment(\.snuInlineImageShowLink) private var showInlineImageLinks
     
     @State private var result: Text? = nil
 
@@ -42,7 +43,7 @@ struct SnudownTextView: View {
     
     private func buildTextView(for node: SnuTextNode) async -> Text {
         if let link = node as? SnuLinkNode {
-            return await link.contentAsCMark(loadImages: displayImages, imageWidth: imageWidth)
+            return await link.contentAsCMark(loadImages: displayImages, imageWidth: imageWidth, showLink: showInlineImageLinks)
                 .font(font ?? defaultFont)
         }
         
@@ -91,7 +92,7 @@ extension Text {
 
 extension SnuTextNode {
     
-    func contentAsCMark(loadImages: Bool, imageWidth: CGFloat) async -> Text {
+    func contentAsCMark(loadImages: Bool, imageWidth: CGFloat, showLink: Bool) async -> Text {
        
         var result = buildAttributedString(node: self)
 
@@ -107,7 +108,11 @@ extension SnuTextNode {
                     )
                     let imageTask = try? await ImagePipeline.shared.image(for: request)
                     if let cgImage = await imageTask?.byPreparingForDisplay() {
-                        return Text(Image(uiImage: cgImage).resizable()) + Text("\n") + Text(LocalizedStringKey(result))
+                        var returnText = Text(Image(uiImage: cgImage).resizable())
+                        if showLink {
+                            returnText = returnText + Text("\n") + Text(LocalizedStringKey(result))
+                        }
+                        return returnText
                     }
                     
                     return nil

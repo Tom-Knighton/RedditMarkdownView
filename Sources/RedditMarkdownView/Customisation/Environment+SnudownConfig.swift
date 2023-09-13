@@ -64,6 +64,10 @@ struct SnuInlineImageWidth: EnvironmentKey {
     static var defaultValue: CGFloat = 50
 }
 
+struct SnuInlineImageShowLink: EnvironmentKey {
+    static var defaultValue: Bool = true
+}
+
 //MARK: - Environment Values
 
 extension EnvironmentValues {
@@ -136,5 +140,10 @@ extension EnvironmentValues {
     var snuInlineImageWidth: CGFloat {
         get { self[SnuInlineImageWidth.self] }
         set { self[SnuInlineImageWidth.self] = newValue }
+    }
+    
+    var snuInlineImageShowLink: Bool {
+        get { self[SnuInlineImageShowLink.self] }
+        set { self[SnuInlineImageShowLink.self] = newValue }
     }
 }
