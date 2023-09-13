@@ -26,7 +26,7 @@ struct SnudownRenderer: View {
     @ViewBuilder
     func renderParagraph(_ p: SnuParagprah) -> some View {
         WrappingHStack(alignment: textAlign, horizontalSpacing: 0, verticalSpacing: 8) {
-            ForEach(p.children) { child in
+            ForEach(p.collectedNodes) { child in
                 SnudownRenderSwitch(node: child)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -59,7 +59,34 @@ struct SnudownRenderSwitch: View {
         }
         if let node = node as? SnuTextNode {
             SnudownTextView(node: node)
+                .border(.red)
         }
         
+    }
+}
+
+extension SnuParagprah {
+    
+    /// Groups sibling nodes that have the 'text' type together, so if there are two SnuTextNode siblings under a paragraph, where [0] is a link and [1]
+    /// is a normal text node, they will be grouped under another SnuTextNode so that the SnuTextView body can render them inline together
+    var collectedNodes: [SnuNode] {
+        var nodes: [SnuNode] = []
+        
+        var index = 0
+        while index < self.children.count {
+            let nodeAtIndex = self.children[index]
+            if nodeAtIndex.type == .text, let last = nodes.last, last.type == .text {
+                let newChildren = [last, nodeAtIndex]
+                let newParentNode = SnuTextNode(insideText: "", children: newChildren)
+                nodes.removeLast()
+                nodes.append(newParentNode)
+            } else {
+                nodes.append(nodeAtIndex)
+            }
+            
+            index += 1
+        }
+        
+        return nodes
     }
 }

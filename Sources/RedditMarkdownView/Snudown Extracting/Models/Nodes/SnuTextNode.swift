@@ -22,5 +22,6 @@ class SnuTextNode: SnuNode {
         self.insideText = insideText
         self.decoration = decoration
         super.init(children: children)
+        self.type = .text
     }
 }

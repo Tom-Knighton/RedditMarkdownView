@@ -13,5 +13,7 @@ class SnuLinkNode: SnuTextNode {
     init(linkHref: String, children: [SnuNode]) {
         self.linkHref = linkHref
         super.init(insideText: "", children: children)
+        
+        self.type = .text
     }
 }
