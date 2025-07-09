@@ -57,4 +57,7 @@ public struct SnudownConfig {
 
     /// The maximum number of characters to render in Snudown Views, truncating with ellipsis if exceeded
     public var maxCharacters: Int? = nil
+    
+    /// Whether or not to hide tables completely from the rendered view. If true, tables will not be displayed at all.
+    public var hideTables: Bool = false
 }

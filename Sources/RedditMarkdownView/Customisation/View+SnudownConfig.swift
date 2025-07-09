@@ -31,6 +31,7 @@ public extension View {
             .environment(\.snuInlineImageWidth, config.inlineImageWidth)
             .environment(\.snuInlineImageShowLink, config.inlineImageShowLinks)
             .environment(\.snuMaxCharacters, config.maxCharacters)
+            .environment(\.snuHideTables, config.hideTables)
     }
     
     
@@ -98,6 +99,11 @@ public extension View {
     /// Sets the maximum number of characters to render in Snudown Views, truncating with ellipsis if exceeded
     func snudownMaxCharacters(_ maxCharacters: Int?) -> some View {
         environment(\.snuMaxCharacters, maxCharacters)
+    }
+    
+    /// Whether or not to hide tables completely from the view
+    func snudownHideTables(_ hide: Bool) -> some View {
+        environment(\.snuHideTables, hide)
     }
 }
 

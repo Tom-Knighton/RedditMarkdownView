@@ -36,6 +36,8 @@ struct SnudownRenderer: View {
 
 struct SnudownRenderSwitch: View {
     
+    @Environment(\.snuHideTables) private var hideTables
+    
     let node: SnuNode
     
     var body: some View {   
@@ -45,7 +47,7 @@ struct SnudownRenderSwitch: View {
         if let node = node as? SnuHeaderNode {
             SnudownHeaderView(node: node)
         }
-        if let node = node as? SnuTableNode {
+        if let node = node as? SnuTableNode, !hideTables {
             SnudownTableView(table: node)
         }
         if let node = node as? SnuQuoteBlockNode {
