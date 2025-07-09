@@ -68,6 +68,10 @@ struct SnuInlineImageShowLink: EnvironmentKey {
     static var defaultValue: Bool = true
 }
 
+struct SnuMaxCharacters: EnvironmentKey {
+    static var defaultValue: Int? = nil
+}
+
 //MARK: - Environment Values
 
 extension EnvironmentValues {
@@ -145,5 +149,10 @@ extension EnvironmentValues {
     var snuInlineImageShowLink: Bool {
         get { self[SnuInlineImageShowLink.self] }
         set { self[SnuInlineImageShowLink.self] = newValue }
+    }
+
+    var snuMaxCharacters: Int? {
+        get { self[SnuMaxCharacters.self] }
+        set { self[SnuMaxCharacters.self] = newValue }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct SnudownView: View {
+    @Environment(\.snuMaxCharacters) private var maxCharacters
     
     private var components: [SnuParagprah] = []
     
@@ -17,7 +18,7 @@ public struct SnudownView: View {
     }
     
     public var body: some View {
-        SnudownRenderer(paragraphs: components)
+        SnudownRenderer(paragraphs: (maxCharacters ?? 0) > 0 ? SnudownTruncator.truncateToMaxCharacters(paragraphs: components, maxCharacters: (maxCharacters ?? 0)) : components)
     }
 }
 

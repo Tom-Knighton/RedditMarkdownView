@@ -54,4 +54,7 @@ public struct SnudownConfig {
     
     /// Whether or not the actual link should be displayed under a linked image. If false, you will not be able to tap the image to open the url
     public var inlineImageShowLinks: Bool = true
+
+    /// The maximum number of characters to render in Snudown Views, truncating with ellipsis if exceeded
+    public var maxCharacters: Int? = nil
 }

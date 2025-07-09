@@ -53,6 +53,7 @@ the following view modifiers are available:
 - `.snudownLinkColor(_ color: Color)`
 - `.snudownDisplayInlineImages(_ display: Bool)`
 - `.snudownInlineImageWidth(_ width: CGFloat)`
+- `.snudownMaxCharacters(_ maxCharacters: Int?)`
 
 Each of these pretty much do what they say, but some small additional 
 built-in documentation is available on each method 

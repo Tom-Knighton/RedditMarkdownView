@@ -30,6 +30,7 @@ public extension View {
             .environment(\.snuDisplayInlineImages, config.displayInlineImages)
             .environment(\.snuInlineImageWidth, config.inlineImageWidth)
             .environment(\.snuInlineImageShowLink, config.inlineImageShowLinks)
+            .environment(\.snuMaxCharacters, config.maxCharacters)
     }
     
     
@@ -92,6 +93,11 @@ public extension View {
     /// Whether or not to display tappable links under linked images. If false, the image itself still will *not* be tappable to open urls
     func snudownShowInlineImageLinks(_ show: Bool) -> some View {
         environment(\.snuInlineImageShowLink, show)
+    }
+    
+    /// Sets the maximum number of characters to render in Snudown Views, truncating with ellipsis if exceeded
+    func snudownMaxCharacters(_ maxCharacters: Int?) -> some View {
+        environment(\.snuMaxCharacters, maxCharacters)
     }
 }
 
